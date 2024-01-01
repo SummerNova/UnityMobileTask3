@@ -55,12 +55,14 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         transform.position = touchPosition;
         joystickBackground.enabled = true;
         knob.color = new Color(1,1,1,1);
+        knob.raycastPadding = new Vector4(10, 10, 10, 10);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         joystickBackground.enabled = false;
         knob.color = new Color(1, 1, 1, 0);
+        knob.raycastPadding = new Vector4(1080, 1920, 1080, 1920);
     }
 
     // Start is called before the first frame update
