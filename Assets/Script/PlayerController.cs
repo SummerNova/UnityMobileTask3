@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
             Accelerating = true;
             AccelerationTimer = 0;
             DecelerationTimer += Time.deltaTime;
-            Debug.Log("Decelerating - " + Deceleration.Evaluate(DecelerationTimer / DecelerationDuration));
             currentSpeed = (1-Deceleration.Evaluate(DecelerationTimer / DecelerationDuration)) * Speed;
             if (DecelerationTimer > DecelerationDuration) Decelerating = false;
         }
@@ -38,7 +37,6 @@ public class PlayerController : MonoBehaviour
             Decelerating = true;
             DecelerationTimer = 0;
             AccelerationTimer += Time.deltaTime;
-            Debug.Log("Accelerating - " + Acceleration.Evaluate(AccelerationTimer / AccelerationDuration));
             currentSpeed = (Acceleration.Evaluate(AccelerationTimer / AccelerationDuration)) * Speed;
             if (DecelerationTimer > DecelerationDuration) Accelerating = false;
         }

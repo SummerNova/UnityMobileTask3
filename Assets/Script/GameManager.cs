@@ -15,7 +15,13 @@ public class GameManager : MonoBehaviour
     private int _gunSubdivisions = 1;
     public int GunSubdivisions { get { return _gunSubdivisions; } set { _gunSubdivisions = value; OnGunChanged.Invoke(); } } 
     public float Range { get; set; } = 15;
+
+    public float BulletDamage { get; set; } = 1;
+
+    public float RegenRank { get; set; } = 0;
+
     public PlayerController controller;
+    public PlayerHealth health;
 
     public static GameManager instance;
 
@@ -25,5 +31,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
     }
+
+    public void Death() { }
     
 }

@@ -34,8 +34,9 @@ public class Weapon : MonoBehaviour
         GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
         if (bullet != null)
         {
-            bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
+            bullet.transform.position = transform.position;
+            bullet.transform.Translate(transform.up);
             bullet.SetActive(true);
         }
     }
