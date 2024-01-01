@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] AnimationCurve Deceleration;
     [SerializeField] float DecelerationDuration = 1;
     [SerializeField] float AccelerationDuration = 1;
+    [SerializeField] Transform Graphic;
 
     private float currentSpeed = 0;
     private Vector2 LastAimed;
@@ -43,6 +44,9 @@ public class PlayerController : MonoBehaviour
         }
 
         if (MoveDirection != Vector2.zero) LastAimed = MoveDirection;
+
+        Graphic.up = Vector3.Lerp(Graphic.up,LastAimed.normalized,0.2f);
+
         transform.Translate(LastAimed*Time.deltaTime*currentSpeed);
     }
 }
