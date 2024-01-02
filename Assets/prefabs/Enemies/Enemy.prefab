@@ -50,9 +50,10 @@ MonoBehaviour:
   Graphic: {fileID: 5148295577896734447}
   RB: {fileID: 78351164115261492}
   animator: {fileID: 2249483278661132690}
-  EnemySpeed: 3
+  EnemySpeed: 1
   EnemyHP: 1
-  EnemyHPMax: 3
+  EnemyHPMax: 1
+  CollisionDamage: 10
 --- !u!50 &78351164115261492
 Rigidbody2D:
   serializedVersion: 4

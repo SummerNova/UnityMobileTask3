@@ -3,10 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     private int PlayerLevel { get; set; } = 1;
+
+    private int XPPerLevel { get; set; } = 5;
+
+    private int XPBank { get; set; } = 0;
+
+    public int LevelupBank { get; set; } = 0;
+
     public float BulletSpeed { get; set; } = 6;
 
     private float _bulletDelay = 1;
@@ -22,6 +31,11 @@ public class GameManager : MonoBehaviour
 
     public PlayerController controller;
     public PlayerHealth health;
+    public Slider XPBar;
+    public ObjectPool XPPool;
+    public UpgradesManager UpgradesManager;
+    public CircleCollider2D Magnet;
+    public Animator PlayerDeath;
 
     public static GameManager instance;
 
@@ -32,6 +46,25 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    public void Death() { }
+    public void CollectXP()
+    {
+        
+        XPBank++;
+        if (XPBank >= PlayerLevel * XPPerLevel)
+        {
+            XPBank -= PlayerLevel * XPPerLevel;
+            LevelupBank++;
+            PlayerLevel++;
+            UpgradesManager.enableButtons();
+        }
+        XPBar.value = (float)XPBank/(float)(PlayerLevel*XPPerLevel);
+    }
+
+    public void Death() { PlayerDeath.SetBool("Dead", true); }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
+    }
     
 }

@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float EnemySpeed = 1;
     [SerializeField] float EnemyHP = 1;
     [SerializeField] float EnemyHPMax = 3;
+    [SerializeField] float CollisionDamage = 10;
 
 
     private void OnValidate()
@@ -38,23 +39,33 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Detected SOme COllision");
+        
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Colided with Player");
+            
+            gameManager.health.TakeDamage(CollisionDamage);
+            Death();
         }
 
         if (collision.gameObject.tag == "Bullet")
         {
-            Debug.Log("Hit By Bullet");
+            
             EnemyHP -= gameManager.BulletDamage;
-            if (EnemyHP <= 0) animator.SetBool("Destroyed", true);
+            if (EnemyHP <= 0) Death();
         }
     }
 
-    public void Reset()
+    public void OnEnable()
     {
         EnemyHP = EnemyHPMax;
         animator.SetBool("Destroyed", false);
+    }
+
+    public void Death()
+    {
+        GameObject XPOrb = gameManager.XPPool.GetPooledObject();
+        XPOrb.transform.position = transform.position;
+        XPOrb.SetActive(true);
+        animator.SetBool("Destroyed", true);
     }
 }

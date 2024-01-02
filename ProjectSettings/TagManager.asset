@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Enemy
-  - PlayerCharacter
+  - Magnet
   layers:
   - Default
   - TransparentFX
@@ -17,8 +17,8 @@ TagManager:
   - Enemy
   - Player
   - Bullet
-  - 
-  - 
+  - Magnet
+  - XP Orb
   - 
   - 
   - 

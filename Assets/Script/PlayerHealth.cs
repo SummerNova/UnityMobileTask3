@@ -15,26 +15,35 @@ public class PlayerHealth : MonoBehaviour
     {
         gameManager = GameManager.instance;
         health = maxHealth;
+        StartCoroutine(Alive());
     }
     // Update is called once per frame
     IEnumerator Alive()
     {
-        yield return null;
-        UpdateBar();
-        if (maxHealth < 0) gameManager.Death();
-        else
+        while (true)
         {
-            if (health + RegenRate * gameManager.RegenRank * Time.deltaTime > maxHealth)
+            yield return null;
+
+            UpdateBar();
+            if (maxHealth < 0)
             {
-                health = maxHealth;
+                gameManager.Death();
+                StopCoroutine(Alive());
             }
+
             else
             {
-                health += RegenRate * gameManager.RegenRank * Time.deltaTime;
+                if (health + RegenRate * gameManager.RegenRank * Time.deltaTime > maxHealth)
+                {
+                    health = maxHealth;
+                }
+                else
+                {
+                    health += RegenRate * gameManager.RegenRank * Time.deltaTime;
+                }
             }
+            UpdateBar();
         }
-        UpdateBar();
-        
     }
 
     public void UpdateBar()

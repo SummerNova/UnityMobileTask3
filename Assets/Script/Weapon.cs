@@ -18,15 +18,19 @@ public class Weapon : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(gameManager.BulletDelay);
-            FireBullet();
-            RotateWeapon();
+            yield return new WaitForSeconds(1/ gameManager.BulletDelay);
+            for (int i = 0; i < gameManager.GunSubdivisions; i++)
+            {
+                RotateWeapon(360f / gameManager.GunSubdivisions);
+                FireBullet();
+            }
+            RotateWeapon(45);
         }
     }
 
-    private void RotateWeapon()
+    private void RotateWeapon(float degree)
     {
-        transform.Rotate(new Vector3(0, 0, 45 / gameManager.GunSubdivisions));
+        transform.Rotate(new Vector3(0, 0, degree / gameManager.GunSubdivisions));
     }
 
     private void FireBullet()
