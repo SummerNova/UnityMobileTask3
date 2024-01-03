@@ -60,7 +60,11 @@ public class GameManager : MonoBehaviour
         XPBar.value = (float)XPBank/(float)(PlayerLevel*XPPerLevel);
     }
 
-    public void Death() { PlayerDeath.SetBool("Dead", true); }
+    public void Death() 
+    {
+        Debug.Log("Started Dying");
+        PlayerDeath.SetBool("Dead", true); 
+    }
 
     public void Restart()
     {

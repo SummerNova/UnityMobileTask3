@@ -656,6 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a728d1730bfc45e4a99561ebf9634c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectPool: {fileID: 1357753011}
 --- !u!1 &118659365
 GameObject:
   m_ObjectHideFlags: 0
@@ -2639,7 +2640,7 @@ MonoBehaviour:
   XPPool: {fileID: 2036341547}
   UpgradesManager: {fileID: 204726782}
   Magnet: {fileID: 447731457}
-  PlayerDeath: {fileID: 0}
+  PlayerDeath: {fileID: 227157292}
   OnGunChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2701,8 +2702,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyPool: {fileID: 560030744}
-  SpawnRatePerTier: 0.5
-  DangerINcrement: 30
+  SpawnRatePerTier: 1
+  DangerINcrement: 20
   SpawnDistance: 8
 --- !u!114 &560030744
 MonoBehaviour:
@@ -3764,7 +3765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +0.1 Regen
+  m_text: '+0.5 Regen '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9513,7 +9514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e8e1b0164c48ea41a79fe86a43b1c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RegenRate: 0.1
+  RegenRate: 0.5
   HPBar: {fileID: 1596745693}
 --- !u!1 &1055004367
 GameObject:
@@ -11644,7 +11645,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: X2 Spread
+  m_text: +1 Spread
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

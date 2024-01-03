@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     private PlayerController controller;
     private GameManager gameManager;
+    private bool isDead = false;
 
     [SerializeField] GameObject Graphic;
     [SerializeField] Rigidbody2D RB;
@@ -37,10 +38,10 @@ public class Enemy : MonoBehaviour
         RB.MovePosition(transform.position + (controller.transform.position - transform.position).normalized * EnemySpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.gameObject.tag == "Player")
+
+        if (collision.gameObject.tag == "Player" && !isDead) 
         {
             
             gameManager.health.TakeDamage(CollisionDamage);
@@ -59,11 +60,13 @@ public class Enemy : MonoBehaviour
     {
         EnemyHP = EnemyHPMax;
         animator.SetBool("Destroyed", false);
+        isDead = false;
     }
 
     public void Death()
     {
         GameObject XPOrb = gameManager.XPPool.GetPooledObject();
+        isDead = true;
         XPOrb.transform.position = transform.position;
         XPOrb.SetActive(true);
         animator.SetBool("Destroyed", true);

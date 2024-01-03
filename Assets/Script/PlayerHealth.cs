@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float RegenRate = 0.1f;
     [SerializeField] Slider HPBar;
     GameManager gameManager;
+    private bool alive = true;
 
     private void Start()
     {
@@ -20,15 +21,15 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     IEnumerator Alive()
     {
-        while (true)
+        while (alive)
         {
             yield return null;
 
             UpdateBar();
-            if (maxHealth < 0)
+            if (health < 0)
             {
                 gameManager.Death();
-                StopCoroutine(Alive());
+                alive = false;
             }
 
             else
@@ -54,6 +55,11 @@ public class PlayerHealth : MonoBehaviour
     {
         health -= damage;
         UpdateBar();
+        if (health < 0)
+        {
+            gameManager.Death();
+            StopCoroutine(Alive());
+        }
     }
 
     public void HealAmount(float amount)
@@ -73,7 +79,7 @@ public class PlayerHealth : MonoBehaviour
         maxHealth -= amount;
         if (health > maxHealth) health = maxHealth;
         UpdateBar();
-        if (maxHealth < 0) gameManager.Death();
+        if (health < 0) gameManager.Death();
     }
 
     

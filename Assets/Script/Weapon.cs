@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-
+    [SerializeField] ObjectPool objectPool;
     private GameManager gameManager;
 
     private void Start()
@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
 
     private void FireBullet()
     {
-        GameObject bullet = ObjectPool.SharedInstance.GetPooledObject();
+        GameObject bullet = objectPool.GetPooledObject();
         if (bullet != null)
         {
             bullet.transform.rotation = transform.rotation;
